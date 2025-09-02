@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내가 좋아하는 역사 영화 </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bungee+Shade&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Oswald:wght@200..700&family=Pacifico&family=Playwrite+MX+Guides&display=swap');
+
+        .black-han-sans-regular {
+            font-family: "Black Han Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .main {
+            background-color: greenyellow;
+            color: white;
+            background-image: url('https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20231109_279%2F1699485836338xzEDb_JPEG%2Fmovie_image.jpg'
+                );
+            background-position: center;
+            background-size: cover;
+        }
+
+        body {
+            background-color: rgb(92, 78, 92);
+        }
+
+        .mycard {
+            margin: 20px auto;
+            width: 1200px;
+        }
+
+        .mypostingbox {
+            width: 500px;
+            margin: 20px auto 20px auto;
+
+            border: 1px solid rgb(201, 206, 184);
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .form-floating>input {
+            background-color: transparent;
+            color: rgb(18, 122, 36);
+        }
+
+        .form-floating>label {
+            color: rgb(3, 1, 20);
+        }
+
+        .input-group>label {
+            background-color: transparent;
+            color: rgb(180, 190, 36);
+        }
+
+        .mypostingbox>button {
+            width: 50%;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <header class="p-3 text-bg-dark">
+        <div class="container"></div>
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 text-danger">내가 좋아하는 역사 영화 나라</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">홈</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">내가 찜한 콘텐츠</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">현재 기온 : 20.00</a></li>
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+                    aria-label="Search">
+            </form>
+
+            <div class="mylogin">
+                <p>>ID : <input type="text" /></p>
+                <p>>PW : <input type="text" /></p>
+                <button type="button" class="btn btn-outline-light me-2">login</button>
+                <button type="button" class="btn btn-danger">Sign-up</button>
+            </div>
+        </div>
+        </div>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">노량: 죽음의 바다</h1>
+                <p class="col-md-8 fs-4">1598년 12월, 임진왜란 발발 7년 뒤. 왜군의 수장 도요토미 히데요시가 사망하자 왜군은 조선에서 급히 철수하려 한다. 그러나 이순신은
+                    “이대로 끝내선 안 된다”며 명나라와 연합해 왜군의 퇴로를 차단하고 마지막 전투를 준비한다. 하지만 명나라 도독 진린은 왜군의 뇌물에 넘어가 퇴각을 돕고, 시마즈의 살마군까지
+                    합류하면서
+                    노량에서 거대한 최후의 전투가 벌어지게 된다. </p>
+                <button id="savebtn" type="button" class="btn btn-outline-light">나만의 영화 기록하기</button>
+                <button type="button" class="btn btn-outline-light">상세정보</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mypostingbox" id="postingbox">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="image" placeholder="영화이미지">
+            <label for="floatingInput">영화이미지</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="title" placeholder="영화제목">
+            <label for="floatingInput">영화제목</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">별점</label>
+            <select class="form-select" id="star">
+
+                <option value="⭐">⭐</option>
+                <option value="⭐⭐">⭐⭐</option>
+                <option value="⭐⭐⭐">⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="comment" placeholder="추천이유">
+            <label for="floatingInput">추천이유</label>
+        </div>
+        <button id="postingbtn" type="button" class="btn btn-danger">영화 앨범 생성하기</button>
+    </div>
+
+
+
+    <div class="mycard">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="card">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://postfiles.pstatic.net/MjAyNTA3MDVfMTM4/MDAxNzUxNjc4OTA2NzUx.OCbctujMPSQuzFcwBdxjkR0aTceQwP9TeinMQJsn0mEg.jLbDZ8moSJZcZ3t6QksyvEYYcXzafuyZj12QPzf-_N4g.PNG/4.png?type=w3840"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">일본 배들이 쳐들어오는 장면</h5>
+                        <p class="card-text">⭐⭐⭐⭐⭐</p>
+                        <p class="card-text">수많은 일본 배들을 물리쳤다는 자랑스러운 이순신</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://i.imgur.com/9K8wEyz.png" class=" card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">거북선</h5>
+                        <p class="card-text">⭐⭐⭐⭐⭐</p>
+                        <p class="card-text"> 바라보는 것 만으로도 공포심을 자극하는 용머리와 선체를 감싸고 있는 서슬퍼런 칼날 갑주, 그리고 3층 구조로 재현된 웅장한 스케일까지
+                            지금까지의 어떤 거북선보다 사실적이고 위협적인 최강의 전투병기로써 압도적인 위용을 자랑하고 있다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA0MjhfMTI1%2FMDAxNzQ1Nzg5MTE5MTY2.GqLRyjIWKSm0GL_OzRmH_-e0VVLLYYS4S3RZZ1tmZxsg.EAMW9VmUng1FQtHke3GtSYsMilVxE8ZyGokhYU5CCG0g.JPEG%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20250420%25A3%25DF195947.jpg&type=sc960_832"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">오늘을 사는 우리에게 (자랑스러운 이순신)
+                        </h5>
+                        <p class="card-text">⭐⭐⭐⭐⭐</p>
+                        <p class="card-text">이순신 장군의 정신은 지금도 유효하다.
+                            작은 어려움 앞에서 주저앉기보다는, 남은 ‘12척’을 믿고 다시 나아가는 용기.
+                            그것이야말로 지금 우리가 살아가는 힘의 원천이 된다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://imgnews.pstatic.net/image/312/2023/11/30/0000638794_004_20231130090801449.jpg?type=w647"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                        </h5>
+                        <p class="card-text">⭐⭐⭐⭐⭐</p>
+                        <p class="card-text">공개된 프로덕션 스틸에서는 물 한 방울 없는 그린 스크린 위에 거대한 위용을 자랑하는 판옥선이 등장해 눈길을 끈다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        //For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-kKUZI6J96yk756_PUWPzLM4FzHMUNeo",
+            authDomain: "spart-4a255.firebaseapp.com",
+            projectId: "spart-4a255",
+            storageBucket: "spart-4a255.firebasestorage.app",
+            messagingSenderId: "84276285317",
+            appId: "1:84276285317:web:7b353aad93b9b84986beec",
+            measurementId: "G-VJ31NQZCQW"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 영화 카드 추가 함수
+        function addMovieCard(image, title, star, comment) {
+            let temp_html = `           
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="${image}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${title}</h5>
+                            <p class="card-text">${star}</p>
+                            <p class="card-text">${comment}</p>
+                        </div>
+                    </div>
+                </div>`;
+            $('#card').append(temp_html);
+        }
+
+        // Firebase에서 영화 데이터 불러오기 함수
+        async function loadMoviesFromFirebase() {
+            try {
+                console.log("Firebase에서 데이터 로딩 중...");
+                const querySnapshot = await getDocs(collection(db, "movies"));
+                
+                let movieCount = 0;
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    console.log("로드된 영화 데이터:", data);
+                    addMovieCard(data.image, data.title, data.star, data.comment);
+                    movieCount++;
+                });
+                
+                console.log(`총 ${movieCount}개의 영화가 로드되었습니다.`);
+                
+            } catch (error) {
+                console.error("Firebase 데이터 로딩 오류:", error);
+                alert('Firebase에서 데이터를 불러오는 중 오류가 발생했습니다: ' + error.message);
+            }
+        }
+
+        // 페이지 로드 시 실행
+        $(document).ready(function() {
+            console.log("DOM 로드 완료");
+            
+            // Firebase 연결 상태 확인
+            console.log("Firebase 초기화 완료:", app);
+            console.log("Firestore 초기화 완료:", db);
+            
+            // Firebase에서 영화 데이터 불러오기
+            loadMoviesFromFirebase();
+
+            // "나만의 영화 기록하기" 버튼 클릭 이벤트
+            $("#savebtn").click(function() {
+                console.log("savebtn 클릭됨");
+                $('#postingbox').toggle();
+                console.log("postingbox 토글 완료");
+            });
+
+            // "영화 앨범 생성하기" 버튼 클릭 이벤트
+            $("#postingbtn").click(async function () {
+                console.log("postingbtn clicked - Firebase 저장 시작");
+
+                let image = $('#image').val();
+                let title = $('#title').val();
+                let star = $('#star').val();
+                let comment = $('#comment').val();
+                let date = new Date().toISOString().split('T')[0]; // 현재 날짜
+
+                // 입력값 검증
+                if (!image || !title || !comment) {
+                    alert('모든 필드를 입력해주세요!');
+                    return;
+                }
+
+                let doc = {
+                    'image': image,
+                    'title': title,
+                    'star': star,
+                    'comment': comment,
+                    'date': date,
+                    'timestamp': new Date()  // 서버 타임스탬프 추가
+                };
+                
+                try {
+                    // Firebase Firestore에 데이터 저장
+                    console.log("Firebase에 저장 중...");
+                    await addDoc(collection(db, "movies"), doc);
+                    console.log("Firebase 저장 완료!");
+
+                    alert('Firebase에 저장완료!!');
+
+                    // 새로운 카드 즉시 추가 (화면에 표시)
+                    addMovieCard(image, title, star, comment);
+
+                    // 입력 필드 초기화
+                    $('#image').val('');
+                    $('#title').val('');
+                    $('#star').val('⭐');
+                    $('#comment').val('');
+
+                    // 입력 폼 숨기기
+                    $('#postingbox').hide();
+
+                } catch (error) {
+                    console.error("Firebase 저장 오류:", error);
+                    alert('Firebase 저장 중 오류가 발생했습니다: ' + error.message);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
