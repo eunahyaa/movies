@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 영화 기록장</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bungee+Shade&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Oswald:wght@200..700&family=Pacifico&family=Playwrite+MX+Guides&display=swap');
+
+        .black-han-sans-regular {
+            font-family: "Black Han Sans", sans-serif;
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        .main {
+            background-color: rgba(255, 255, 255, 0.5);  /* 흰색 반투명 */
+            color: white;
+            background-image: url('https://images.pexels.com/photos/92083/pexels-photo-92083.jpeg');
+            background-position: center;
+            background-size: cover;
+            width: 1200px;
+        }
+
+        body {
+            background-color: rgb(92, 78, 92);
+        }
+
+        .mycard {
+            margin: 20px auto;
+            width: 1200px;
+        }
+
+        .mypostingbox {
+            width: 500px;
+            margin: 20px auto 20px auto;
+
+            border: 1px solid rgb(201, 206, 184);
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .form-floating>input {
+            background-color: transparent;
+            color: rgb(18, 122, 36);
+        }
+
+        .form-floating>label {
+            color: rgb(3, 1, 20);
+        }
+
+        .input-group>label {
+            background-color: transparent;
+            color: rgb(180, 190, 36);
+        }
+
+        .mypostingbox>button {
+            width: 50%;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <header class="p-3 text-bg-dark">
+        <div class="container"></div>
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 text-danger">나만의영화기록장</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">홈</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">내가 찜한 콘텐츠</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">현재 기온 : 20.00</a></li>
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+                    aria-label="Search">
+            </form>
+
+            <div class="mylogin">
+                <p>>ID : <input type="text" /></p>
+                <p>>PW : <input type="text" /></p>
+                <button type="button" class="tn btn-danger">login</button>
+                <button type="button" class="tn btn-danger">Sign-up</button>
+            </div>
+        </div>
+        </div>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">나만의 영화 기록장</h1>
+                <p class="col-md-8 fs-4">
+                    나만의 영화 기록장에 오신 것을 환영합니다! 이곳에서 여러분이 본 영화의 감동, 인상 깊었던 장면, 그리고 솔직한 평점을 자유롭게 기록해보세요. 시간이 흐른 뒤 다시 이 페이지를
+                    찾아보며 그때의 감정을 되새길 수 있습니다.
+                </p>
+                <button id="savebtn" type="button" class="btn btn-danger">나만의 영화 기록하기</button>
+                <button type="button" class="btn btn-danger">상세정보</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mypostingbox" id="postingbox">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="image" placeholder="이미지주소붙이기">
+            <label for="floatingInput">영화이미지주소붙이기</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="title" placeholder="영화제목">
+            <label for="floatingInput">영화제목</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">별점</label>
+            <select class="form-select" id="star">
+
+                <option value="⭐">⭐</option>
+                <option value="⭐⭐">⭐⭐</option>
+                <option value="⭐⭐⭐">⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="comment" placeholder="추천이유">
+            <label for="floatingInput">추천이유</label>
+        </div>
+        <button id="postingbtn" type="button" class="btn btn-danger">영화 앨범 생성하기</button>
+    </div>
+
+
+    <div class="mycard">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="card">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://postfiles.pstatic.net/MjAyNTA3MDVfMTM4/MDAxNzUxNjc4OTA2NzUx.OCbctujMPSQuzFcwBdxjkR0aTceQwP9TeinMQJsn0mEg.jLbDZ8moSJZcZ3t6QksyvEYYcXzafuyZj12QPzf-_N4g.PNG/4.png?type=w3840"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">노량:죽음의 바다</h5>
+                        <p class="card-text">⭐⭐⭐⭐⭐</p>
+                        <p class="card-text">노량 죽음의 바다는 단순히 임진왜란의 마지막 전투를 보여주는 영화를 넘어섭니다. 이 작품은 역사의 기록 속에서 우리가 꼭 기억해야 할 이순신 장군의 마지막 고뇌와 희생을 생생하게 재현해냈기 때문입니다.
+
+영화는 죽음의 바다라는 부제에 걸맞게, 전쟁의 허무함과 비극성을 압도적인 스케일로 보여줍니다. 특히, 임진왜란의 마지막 전투였던 노량해전의 처절한 야간 전투 장면은 관객들에게 7년간의 전쟁이 남긴 상흔과 평화를 위한 영웅의 간절한 의지를 깊이 각인시킵니다.
+
+무엇보다 이 영화의 핵심은 이순신 장군의 인간적인 고뇌와 결단입니다. 이 전쟁을 올바르게 끝내야 한다는 일념으로, 퇴각하려는 왜군을 끝까지 섬멸하려 했던 그의 숭고한 의지는 단순히 승리만을 쫓는 영웅이 아닌, 미래를 위해 기꺼이 자신의 모든 것을 바친 한 인간의 위대함을 보여줍니다. 노량 죽음의 바다는 단순한 역사 영화가 아닌, 희생과 평화의 가치를 되새기게 하는 매우 의미 있는 작품이기에 강력히 추천합니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA2MzBfNDUg%2FMDAxNzUxMjY3NDg5MzQw.8p-2UiLBbmFF8xFBGrA9wXk8STQ1HAK6H2_yUQ635mog.UTRpUrRoefnyFmNwfb4SozoHkjJ-nRWCnVEbZYAqxs0g.PNG%2Fimage.png&type=sc960_832" class=" card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">드래곤길들이기</h5>
+                        <p class="card-text">⭐⭐⭐⭐⭐</p>
+                        <p class="card-text">드래곤 길들이기는 꿈과 현실의 조화, 그리고 성장통을 아름답게 그려낸 작품. 
+                            특히 주인공 히컵과 드래곤 투슬리스의 교감은 시대를 초월하는 우정의 가치를 보여준다.
+                            눈을 사로잡는 화려한 비행 액션과 가슴을 울리는 따뜻한 메시지가 완벽한 조화를 이루며, 남녀노소 누구나 즐길 수 있는 최고의 애니메이션이라고 평하고 싶습니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://img.sportsworldi.com/content/image/2025/06/30/20250630503824.jpg"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">케이팝 데몬 헌터스</h5>
+                        <p class="card-text">⭐⭐⭐⭐⭐</p>
+                        <p class="card-text">K-Pop과 한국 문화의 매력을 악마 사냥이라는 독특한 소재와 결합한 '케이팝 데몬 헌터스'는 신선함과 재미를 모두 잡은 작품입니다. 
+                            화려하고 역동적인 K-Pop 공연 장면은 눈을 즐겁게 하고, 매력적인 캐릭터들이 펼치는 액션은 짜릿함을 선사합니다. 단순한 오락 애니메이션을 넘어, 꿈을 쫓는 청춘들의 열정과 성장을 감동적으로 그려냈다는 점에서 높은 평가를 받을 만합니다. 
+                            K-Pop 팬은 물론, 새로운 스타일의 애니메이션을 찾는 이들에게 강력히 추천합니다.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA4MjNfMjA1%2FMDAxNzI0NDA2NzQ3MDQz.N55qElpPuWZ9ZLlNnpZBkUIsdwAn5wMeeQ8ykDVLR5sg.2A2TeXflHdLmnxhcVviPwJhLy8CaT8BDMI5elIblHRQg.JPEG%2F1724406702798.jpg&type=sc960_832"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">인사이드아웃</h5>
+                        <p class="card-text">⭐⭐⭐⭐⭐</p>
+                        <p class="card-text">감정을 캐릭터로 만들어 마음속 세계를 보여주는 독특한 영화입니다. 슬픔이 단순히 나쁜 감정이 아니라 성장에 꼭 필요하다는 메시지가 큰 울림을 줍니다. 아이들에게는 감정 이해를, 어른들에게는 위로를 선물하는, 따뜻하고 아름다운 명작이라 강력히 추천합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        //For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-kKUZI6J96yk756_PUWPzLM4FzHMUNeo",
+            authDomain: "spart-4a255.firebaseapp.com",
+            projectId: "spart-4a255",
+            storageBucket: "spart-4a255.firebasestorage.app",
+            messagingSenderId: "84276285317",
+            appId: "1:84276285317:web:7b353aad93b9b84986beec",
+            measurementId: "G-VJ31NQZCQW"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 영화 카드 추가 함수
+        function addMovieCard(image, title, star, comment) {
+            let temp_html = `           
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="${image}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${title}</h5>
+                            <p class="card-text">${star}</p>
+                            <p class="card-text">${comment}</p>
+                        </div>
+                    </div>
+                </div>`;
+            $('#card').append(temp_html);
+        }
+
+        // Firebase에서 영화 데이터 불러오기 함수
+        async function loadMoviesFromFirebase() {
+            try {
+                console.log("Firebase에서 데이터 로딩 중...");
+                const querySnapshot = await getDocs(collection(db, "movies"));
+
+                let movieCount = 0;
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    console.log("로드된 영화 데이터:", data);
+                    addMovieCard(data.image, data.title, data.star, data.comment);
+                    movieCount++;
+                });
+
+                console.log(`총 ${movieCount}개의 영화가 로드되었습니다.`);
+
+            } catch (error) {
+                console.error("Firebase 데이터 로딩 오류:", error);
+                alert('Firebase에서 데이터를 불러오는 중 오류가 발생했습니다: ' + error.message);
+            }
+        }
+
+        // 페이지 로드 시 실행
+        $(document).ready(function () {
+            console.log("DOM 로드 완료");
+
+            // Firebase 연결 상태 확인
+            console.log("Firebase 초기화 완료:", app);
+            console.log("Firestore 초기화 완료:", db);
+
+            // Firebase에서 영화 데이터 불러오기
+            loadMoviesFromFirebase();
+
+            // "나만의 영화 기록하기" 버튼 클릭 이벤트
+            $("#savebtn").click(function () {
+                console.log("savebtn 클릭됨");
+                $('#postingbox').toggle();
+                console.log("postingbox 토글 완료");
+            });
+
+            // "영화 앨범 생성하기" 버튼 클릭 이벤트
+            $("#postingbtn").click(async function () {
+                console.log("postingbtn clicked - Firebase 저장 시작");
+
+                let image = $('#image').val();
+                let title = $('#title').val();
+                let star = $('#star').val();
+                let comment = $('#comment').val();
+                let date = new Date().toISOString().split('T')[0]; // 현재 날짜
+
+                // 입력값 검증
+                if (!image || !title || !comment) {
+                    alert('모든 필드를 입력해주세요!');
+                    return;
+                }
+
+                let doc = {
+                    'image': image,
+                    'title': title,
+                    'star': star,
+                    'comment': comment,
+                    'date': date,
+                    'timestamp': new Date()  // 서버 타임스탬프 추가
+                };
+
+                try {
+                    // Firebase Firestore에 데이터 저장
+                    console.log("Firebase에 저장 중...");
+                    await addDoc(collection(db, "movies"), doc);
+                    console.log("Firebase 저장 완료!");
+
+                    alert('Firebase에 저장완료!!');
+
+                    // 새로운 카드 즉시 추가 (화면에 표시)
+                    addMovieCard(image, title, star, comment);
+
+                    // 입력 필드 초기화
+                    $('#image').val('');
+                    $('#title').val('');
+                    $('#star').val('⭐');
+                    $('#comment').val('');
+
+                    // 입력 폼 숨기기
+                    $('#postingbox').hide();
+
+                } catch (error) {
+                    console.error("Firebase 저장 오류:", error);
+                    alert('Firebase 저장 중 오류가 발생했습니다: ' + error.message);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
